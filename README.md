@@ -10,6 +10,7 @@ Esta versión inicial conserva el HTML creado en la conversación «Ajustar HTML
 
 ```text
 MetodoConectar/
+├── .github/workflows/ # Despliegue automático en Azure Static Web Apps
 ├── index.html   # Landing completa, con los estilos CSS integrados
 ├── .nojekyll    # Publicación directa como sitio estático en GitHub Pages
 └── README.md    # Documentación del proyecto
@@ -20,7 +21,7 @@ MetodoConectar/
 - HTML5 y CSS3: diseño adaptable mediante Grid, Flexbox y consultas de medios.
 - Google Fonts para las tipografías.
 - Iframes para el video de Google Drive y el calendario de reservas.
-- GitHub Pages para alojamiento estático por HTTPS.
+- GitHub Pages y Azure Static Web Apps para alojamiento estático por HTTPS.
 
 No requiere instalación de paquetes, compilación, framework, JavaScript propio ni backend. Los servicios incrustados pueden ejecutar sus propios scripts. El sitio no almacena datos ni contiene un formulario propio: las reservas se gestionan en el calendario externo.
 
@@ -74,6 +75,16 @@ El video y la agenda incluyen enlaces alternativos para abrirlos en otra pestañ
 
 ## Despliegue
 
+### Azure Static Web Apps
+
+El flujo `.github/workflows/azure-static-web-apps-black-desert-0878dd410.yml` publica los cambios de `main` en Azure y gestiona los entornos de vista previa de pull requests. Utiliza el secreto de GitHub Actions `AZURE_STATIC_WEB_APPS_API_TOKEN_BLACK_DESERT_0878DD410`, configurado por la integración de Azure; su valor no debe guardarse en los archivos del repositorio.
+
+La landing ya está lista para publicar, por lo que el flujo usa `app_location: "/"`, `output_location: ""`, `api_location: ""` y `skip_app_build: true`. No ejecuta `npm install` ni necesita un `package.json` o un comando `build`.
+
+El flujo inicial fallaba porque instalaba un cliente OIDC en la raíz y Oryx detectaba una aplicación Node sin comando de compilación. Se retiraron esos pasos y el parámetro `github_id_token`, que la acción usada no reconocía, conservando la autenticación mediante el secreto de despliegue existente. El mismo secreto se utiliza al cerrar los entornos de vista previa.
+
+### GitHub Pages
+
 El sitio se publica con **GitHub Pages desde la rama `main`, carpeta raíz `/`**. No necesita un flujo personalizado ni credenciales en los archivos del proyecto. `.nojekyll` evita el procesamiento con Jekyll.
 
 La configuración se encuentra en **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root)**. Cada push a `main` actualiza la publicación; puede tardar unos minutos. El estado se puede consultar en Pages y en la ejecución automática de despliegue de GitHub Actions.
@@ -89,4 +100,4 @@ Para futuras actualizaciones, editá `index.html`, comprobá el resultado localm
 - Revisar que el logo y las fuentes cargan, y que el video y el calendario se muestran o permiten abrir sus enlaces alternativos.
 - Revisar `git diff --check` y verificar el sitio público después del despliegue.
 
-Las integraciones externas pueden verse afectadas por permisos, bloqueadores del navegador o interrupciones de sus proveedores. No hay claves ni secretos que configurar en este repositorio.
+Las integraciones externas pueden verse afectadas por permisos, bloqueadores del navegador o interrupciones de sus proveedores. La landing no necesita claves; el despliegue en Azure utiliza el secreto de GitHub Actions descrito arriba.

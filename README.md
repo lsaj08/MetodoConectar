@@ -81,7 +81,7 @@ El flujo `.github/workflows/azure-static-web-apps-black-desert-0878dd410.yml` pu
 
 La landing ya está lista para publicar, por lo que el flujo usa `app_location: "/"`, `output_location: ""`, `api_location: ""` y `skip_app_build: true`. No ejecuta `npm install` ni necesita un `package.json` o un comando `build`.
 
-El flujo inicial fallaba porque instalaba un cliente OIDC en la raíz y Oryx detectaba una aplicación Node sin comando de compilación. Se retiraron esos pasos y el parámetro `github_id_token`, que la acción usada no reconocía, conservando la autenticación mediante el secreto de despliegue existente. El mismo secreto se utiliza al cerrar los entornos de vista previa.
+El flujo inicial fallaba porque instalaba un cliente OIDC en la raíz y Oryx detectaba una aplicación Node sin comando de compilación. Ahora obtiene la identidad de GitHub mediante `core.getIDToken()` integrado en `actions/github-script`, sin instalar paquetes en el sitio, y mantiene `github_id_token` junto con el secreto de despliegue para conservar la autenticación configurada originalmente por Azure. El mismo secreto de despliegue se utiliza al cerrar los entornos de vista previa.
 
 ### GitHub Pages
 

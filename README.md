@@ -23,7 +23,7 @@ MetodoConectar/
 - Iframes para el video de YouTube y el calendario de reservas.
 - GitHub Pages y Azure Static Web Apps para alojamiento estático por HTTPS.
 
-No requiere instalación de paquetes, compilación, framework, JavaScript propio ni backend. Los servicios incrustados pueden ejecutar sus propios scripts. El sitio no almacena datos ni contiene un formulario propio: las reservas se gestionan en el calendario externo.
+No requiere instalación de paquetes, compilación, framework ni backend. Un script JavaScript pequeño controla el carrusel de testimonios, sin dependencias ni reproducción automática. Sin JavaScript, los siete testimonios se muestran completos en una lista. Los servicios incrustados pueden ejecutar sus propios scripts. El sitio no almacena datos ni contiene un formulario propio: las reservas se gestionan en el calendario externo.
 
 ## Identidad visual
 
@@ -113,3 +113,9 @@ Para futuras actualizaciones, editá `index.html`, comprobá el resultado localm
 - Revisar `git diff --check` y verificar el sitio público después del despliegue.
 
 Las integraciones externas pueden verse afectadas por permisos, bloqueadores del navegador o interrupciones de sus proveedores. La landing no necesita claves; el despliegue en Azure utiliza el secreto de GitHub Actions descrito arriba.
+
+## Testimonios
+
+La sección anterior a la agenda contiene los siete comentarios facilitados por Brújula Interna, conservados íntegramente y sin nombres de pacientes. Se identifican como experiencias de talleres. Cada tarjeta incluye cinco estrellas decorativas siguiendo la referencia visual; no se publica una puntuación agregada ni datos estructurados de valoraciones.
+
+El carrusel se maneja con botones anterior/siguiente o flechas del teclado cuando el foco está en los controles. No avanza automáticamente y el texto largo no se recorta. Para editar testimonios, modificar los elementos `figure.testimonial` en `index.html`; el contador se ajusta al número de tarjetas.

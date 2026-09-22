@@ -1,4 +1,4 @@
-# Método CONECTAR · Tu Brújula Interna
+# Método CONECTAR · Brújula Interna
 
 Landing page de Método CONECTAR, un acompañamiento de tres meses que integra psicología y nutrición para construir una relación más flexible y consciente con la comida y el cuerpo, sin dietas ni metas de peso.
 
@@ -20,14 +20,14 @@ MetodoConectar/
 
 - HTML5 y CSS3: diseño adaptable mediante Grid, Flexbox y consultas de medios.
 - Google Fonts para las tipografías.
-- Iframes para el video de Google Drive y el calendario de reservas.
+- Iframes para el video de YouTube y el calendario de reservas.
 - GitHub Pages y Azure Static Web Apps para alojamiento estático por HTTPS.
 
 No requiere instalación de paquetes, compilación, framework, JavaScript propio ni backend. Los servicios incrustados pueden ejecutar sus propios scripts. El sitio no almacena datos ni contiene un formulario propio: las reservas se gestionan en el calendario externo.
 
 ## Identidad visual
 
-La landing utiliza la identidad de **Tu Brújula Interna**:
+La landing utiliza la identidad de **Brújula Interna**:
 
 | Elemento | Uso |
 | --- | --- |
@@ -74,16 +74,16 @@ La estructura y los estilos funcionan localmente; las fuentes, el logo, el video
 
 ## Enlaces integrados
 
-- **Video:** [presentación de Método CONECTAR en Google Drive](https://drive.google.com/file/d/1xQFaGan4boj-9SOj8PT3TJy5GOa5SZKm/view). El iframe utiliza la ruta `/preview` del mismo archivo.
+- **Video:** [presentación de Método CONECTAR en YouTube](https://youtu.be/77v3BOO4n18). El iframe utiliza `https://www.youtube.com/embed/77v3BOO4n18` y `referrerpolicy="strict-origin-when-cross-origin"`.
 - **Calendario:** [agendar una llamada](https://api.psicoceo.com/widget/booking/93S1bBetM0nQT8rnrUni).
 - **Instagram:** [@brujulainternacr](https://www.instagram.com/brujulainternacr/).
 - **Facebook:** [Psicología de la Nutrición](https://www.facebook.com/people/Psicolog%C3%ADa-de-la-Nutrici%C3%B3n/100057042829626/).
 - **TikTok:** [@psiconutricioncr](https://www.tiktok.com/@psiconutricioncr).
 - **WhatsApp:** [+506 6027 0270](https://api.whatsapp.com/send/?phone=50660270270), con un mensaje de interés en Método CONECTAR precargado en la landing.
 
-El video y la agenda incluyen enlaces alternativos para abrirlos en otra pestaña. La reproducción pública depende de los permisos de Google Drive; la disponibilidad de horarios depende del calendario. Publicar el HTML no cambia esas configuraciones ni crea reservas.
+El video y la agenda incluyen enlaces alternativos para abrirlos en otra pestaña. La reproducción pública depende de la visibilidad del video y del permiso de inserción en YouTube; la disponibilidad de horarios depende del calendario. Publicar el HTML no cambia esas configuraciones ni crea reservas.
 
-**Pendiente detectado en la revisión inicial (22 de septiembre de 2026):** el video solicita iniciar sesión en Google. Para que los visitantes puedan reproducirlo sin cuenta, su propietario debe revisar el acceso de visualización mediante enlace en Drive. El calendario sí cargó durante la comprobación, sin enviar una reserva.
+El video debe estar público o no listado y permitir la inserción en otros sitios. Si YouTube muestra el error 153, comprobar que el navegador envía la referencia del sitio de origen; no usar `no-referrer` en el iframe. Probar desde la URL HTTPS del sitio y conservar el enlace alternativo para navegadores que bloqueen el reproductor.
 
 ## Despliegue
 

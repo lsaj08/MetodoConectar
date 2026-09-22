@@ -39,6 +39,18 @@ La landing utiliza la identidad de **Tu Brújula Interna**:
 
 El diseño mantiene espacios amplios, contenedores redondeados y detalles inspirados en una brújula. El [logo de la marca](https://assets.cdn.filesafe.space/iIOBApGso2UQVofpQ6C5/media/6a3c25c7bc1f62f4dd009c7e.ico) se carga desde la URL facilitada para el proyecto.
 
+Para mejorar la lectura, el texto de los botones dorados utiliza `#202a28` (contraste aproximado de 5,30:1). Los textos dorados sobre beige usan el tono más oscuro `#82632f`, y sobre verde se usa `#e8d6b6`. El dorado original se conserva en fondos y detalles.
+
+## Accesibilidad y carga
+
+- Enlace «Saltar al contenido», foco visible y encabezados de sección para facilitar la navegación con teclado y lectores de pantalla.
+- Respeto de la preferencia de movimiento reducido y áreas táctiles más amplias en los enlaces sociales.
+- Video y calendario con carga diferida; enlace alternativo a la agenda antes del iframe.
+- Solo se solicitan los pesos tipográficos utilizados, con `display=swap` y fuentes de respaldo.
+- Dimensiones explícitas de los logos, icono de pestaña y metadatos básicos para compartir el sitio.
+
+La revisión visual cubrió anchos de 320, 390, 768 y 1280 píxeles, sin desbordamiento horizontal del documento. Se comprobaron el salto por teclado y los destinos de los enlaces internos. Esto no sustituye una auditoría completa de accesibilidad ni una medición de rendimiento en dispositivos reales; el contenido interno de los iframes depende de sus proveedores.
+
 ## Visualizar localmente
 
 1. Cloná el repositorio y entrá a su carpeta:

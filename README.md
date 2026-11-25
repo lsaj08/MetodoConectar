@@ -21,6 +21,7 @@ MetodoConectar/
 - HTML5 y CSS3: diseño adaptable mediante Grid, Flexbox y consultas de medios.
 - Google Fonts para las tipografías.
 - Iframes para el video de YouTube y el calendario de reservas.
+- Meta Pixel para registrar el evento `PageView` al abrir la landing.
 - GitHub Pages y Azure Static Web Apps para alojamiento estático por HTTPS.
 
 No requiere instalación de paquetes, compilación, framework ni backend. Un script JavaScript pequeño controla el carrusel de testimonios, sin dependencias ni reproducción automática. Sin JavaScript, los siete testimonios se muestran completos en una lista. Los servicios incrustados pueden ejecutar sus propios scripts. El sitio no almacena datos ni contiene un formulario propio: las reservas se gestionan en el calendario externo.
@@ -110,6 +111,7 @@ Para futuras actualizaciones, editá `index.html`, comprobá el resultado localm
 - Abrir la landing y revisar su presentación en escritorio y en una ventana angosta.
 - Comprobar que los botones llevan a las secciones de video y agenda.
 - Revisar que el logo y las fuentes cargan, y que el video y el calendario se muestran o permiten abrir sus enlaces alternativos.
+- Después del despliegue, comprobar en Probar eventos del Administrador de eventos de Meta que la landing registra `PageView` para el píxel `2274817566412229`.
 - Revisar `git diff --check` y verificar el sitio público después del despliegue.
 
 Las integraciones externas pueden verse afectadas por permisos, bloqueadores del navegador o interrupciones de sus proveedores. La landing no necesita claves; el despliegue en Azure utiliza el secreto de GitHub Actions descrito arriba.

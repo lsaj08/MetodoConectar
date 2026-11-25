@@ -21,7 +21,7 @@ MetodoConectar/
 - HTML5 y CSS3: diseño adaptable mediante Grid, Flexbox y consultas de medios.
 - Google Fonts para las tipografías.
 - Iframes para el video de YouTube y el calendario de reservas.
-- Meta Pixel para registrar el evento `PageView` al abrir la landing.
+- Meta Pixel para registrar `PageView` cuando la persona activa la medición publicitaria desde el pie de página. La preferencia se guarda en el navegador si el almacenamiento está disponible y se puede retirar desde el mismo control. Con JavaScript desactivado, el sitio no carga el píxel.
 - GitHub Pages y Azure Static Web Apps para alojamiento estático por HTTPS.
 
 No requiere instalación de paquetes, compilación, framework ni backend. Un script JavaScript pequeño controla el carrusel de testimonios, sin dependencias ni reproducción automática. Sin JavaScript, los siete testimonios se muestran completos en una lista. Los servicios incrustados pueden ejecutar sus propios scripts. El sitio no almacena datos ni contiene un formulario propio: las reservas se gestionan en el calendario externo.
@@ -104,14 +104,15 @@ La configuración se encuentra en **Settings → Pages → Build and deployment 
 
 URL pública: [https://lsaj08.github.io/MetodoConectar/](https://lsaj08.github.io/MetodoConectar/).
 
-Para futuras actualizaciones, editá `index.html`, comprobá el resultado localmente y subí los cambios a `main`. Conservá las rutas relativas si agregás recursos locales para que funcionen bajo `/MetodoConectar/`. Esta versión no configura un dominio propio.
+Para futuras actualizaciones, editá `index.html`, comprobá el resultado localmente y subí los cambios a `main`. Conservá las rutas relativas si agregás recursos locales para que funcionen bajo `/MetodoConectar/`. El dominio de producción es [metodoconectar.brujulainternacr.com](https://metodoconectar.brujulainternacr.com/), alojado en Azure Static Web Apps. El píxel y su control de preferencias se habilitan únicamente en ese origen HTTPS.
 
 ## Comprobaciones antes de publicar cambios
 
 - Abrir la landing y revisar su presentación en escritorio y en una ventana angosta.
 - Comprobar que los botones llevan a las secciones de video y agenda.
 - Revisar que el logo y las fuentes cargan, y que el video y el calendario se muestran o permiten abrir sus enlaces alternativos.
-- Después del despliegue, comprobar en Probar eventos del Administrador de eventos de Meta que la landing registra `PageView` para el píxel `2274817566412229`.
+- Antes de publicar, revisar en el Administrador de eventos de Meta la categoría y las restricciones de la fuente `2274817566412229`. Revisar también los eventos automáticos y las coincidencias avanzadas para evitar el envío de información sensible.
+- Después del despliegue, abrir `https://metodoconectar.brujulainternacr.com/` con un perfil nuevo, verificar que el píxel no carga antes de activar la medición y confirmar en Probar eventos que luego se recibe un solo `PageView`. Desactivar la medición y recargar para comprobar que el píxel deja de cargar.
 - Revisar `git diff --check` y verificar el sitio público después del despliegue.
 
 Las integraciones externas pueden verse afectadas por permisos, bloqueadores del navegador o interrupciones de sus proveedores. La landing no necesita claves; el despliegue en Azure utiliza el secreto de GitHub Actions descrito arriba.

@@ -15,20 +15,6 @@
       href="https://assets.cdn.filesafe.space/iIOBApGso2UQVofpQ6C5/media/6a3c25c7bc1f62f4dd009c7e.ico"
       type="image/x-icon" />
     <title>Método CONECTAR · Brújula Interna</title>
-    <!-- Meta Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '2274817566412229');
-      fbq('track', 'PageView');
-    </script>
-    <!-- End Meta Pixel Code -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -86,10 +72,6 @@
   </style>
   </head>
   <body>
-    <noscript>
-      <img height="1" width="1" style="display:none" alt=""
-        src="https://www.facebook.com/tr?id=2274817566412229&amp;ev=PageView&amp;noscript=1" />
-    </noscript>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="topbar">
       <div class="wrap topbar-inner">
@@ -390,8 +372,15 @@
               href="https://www.tiktok.com/@psiconutricioncr" target="_blank"
               rel="noopener">TikTok</a><a
               href="https://api.whatsapp.com/send/?phone=50660270270&text=Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20M%C3%A9todo%20CONECTAR"
-              target="_blank" rel="noopener">WhatsApp</a></nav></div><div
-          class="copyright">© 2026 Brújula Interna · Método
+              target="_blank" rel="noopener">WhatsApp</a></nav></div>
+      <div id="meta-preference" hidden>
+        <p id="meta-preference-description">Si activás la medición publicitaria, Meta recibirá un evento al visitar esta página.</p>
+        <label>
+          <input id="meta-opt-in" type="checkbox" aria-describedby="meta-preference-description">
+          Permitir medición publicitaria con Meta
+        </label>
+      </div>
+      <div class="copyright">© 2026 Brújula Interna · Método
           CONECTAR</div></div></footer>
     <script>
   (() => {
@@ -422,5 +411,60 @@
     controls.hidden = false;
   })();
 </script>
+    <script>
+      (() => {
+        if (window.location.origin !== 'https://metodoconectar.brujulainternacr.com') return;
+
+        const preference = document.querySelector('#meta-preference');
+        const optIn = document.querySelector('#meta-opt-in');
+        const storageKey = 'metodo-conectar-meta-consent';
+        const pixelId = '2274817566412229';
+        let started = false;
+
+        function enablePixel() {
+          if (started) {
+            window.fbq('consent', 'grant');
+            return;
+          }
+
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+
+          window.fbq('consent', 'grant');
+          window.fbq('set', 'autoConfig', false, pixelId);
+          window.fbq('init', pixelId);
+          window.fbq('trackSingle', pixelId, 'PageView');
+          started = true;
+        }
+
+        try {
+          optIn.checked = localStorage.getItem(storageKey) === 'granted';
+        } catch {
+          // The preference applies to this visit if storage is blocked.
+        }
+
+        optIn.addEventListener('change', () => {
+          try {
+            localStorage.setItem(storageKey, optIn.checked ? 'granted' : 'denied');
+          } catch {
+            // The preference applies to this visit if storage is blocked.
+          }
+          if (optIn.checked) {
+            enablePixel();
+          } else if (started) {
+            window.fbq('consent', 'revoke');
+          }
+        });
+
+        preference.hidden = false;
+        if (optIn.checked) enablePixel();
+      })();
+    </script>
   </body>
 </html>
